@@ -1,0 +1,45 @@
+<h1>Data file «{{ data_file.name }}»</h1>
+
+<p><a href="dummy">Download</a></p>
+
+{% if most_recent_sibling %}
+<p><b>Warning:</b>
+  <i><a href="{% url 'data_file_detail' most_recent_sibling.uuid %}">{{ most_recent_sibling.name }}</a></i>
+  is a more recent version of this file.</p>
+{% endif %}
+
+<ul>
+  <li>Name: <b>{{ data_file.name }}</b></li>
+  <li>Entity: <a href="{% url 'entity_detail' entity.uuid %}"><b>{{ entity.name }}</b></a> (<a href="%{ url 'entity_type_detail' entity_type.id %}">{{ entity_type.name }}</a>)</li>
+  <li>Upload date: <b>{{ data_file.upload_date }}</b></li>
+  <li>Version of the specification document: <b>{{ entity_type.spec_document }} {{ data_file.spec_version }}</b></li>
+  <li>Notes: <i>{{ data_file.notes }}</i></li>
+</ul>
+
+<p>Metadata:</p>
+
+<p>
+<textarea rows="10" cols="80" readonly="">{{ data_file.metadata }}</textarea>
+</p>
+
+<svg width="100mm" height="100mm" viewbox="0 0 100 100" version="1.1">
+  <path d="M 0,0 100,0 100,100 0,100 0,0 d" fill="none" stroke="#000" stroke-width="1"/>
+  <text x="50" y="50" text-anchor="middle" dominant-baseline="text-bottom" fill="#000">
+    Plot
+  </text>
+</svg>
+
+{% if dependencies %}
+<h2>Dependencies</h2>
+
+<ul>
+  {% for cur_file in dependencies %}
+  <li>
+    <a href="{% url 'data_file_detail' cur_file.uuid %}">{{ cur_file.name }}</a>
+    ({{ cur_file.upload_date }}, <a href="{% url 'entity_type_detail' cur_file.entity.kind.id %}">{{ cur_file.entity.kind.name }}</a>)</li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+
+<p><a href="{% url 'index' %}">Index</a></p>

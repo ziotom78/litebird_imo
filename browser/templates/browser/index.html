@@ -1,0 +1,9 @@
+{% if list_of_types %}
+<ul>
+  {% for cur_type in list_of_types %}
+  <li><a href="{% url 'entity_type_detail' cur_type.id %}">{{ cur_type.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No types have been defined yet.</p>
+{% endif %}

@@ -1,0 +1,19 @@
+<h1>Entity «{{ entity.name }}» (<a href="{% url 'entity_type_detail' entity.kind.id %}">{{ entity.kind.name }}</a>)</h1>
+
+{% if metadata %}
+<h2>Metadata</h2>
+<textarea rows="5" cols="40" readonly="">
+  {{ metadata }}
+</textarea>
+</text>
+{% endif %}
+
+{% if data_files %}
+<h2>Data files</h2>
+<ul>
+  {% for cur_data_file in data_files %}
+  <li><a href="{% url 'data_file_detail' cur_data_file.uuid %}">{{ cur_data_file.name }}</a> ({{ cur_data_file.upload_date }})</li>
+  {% endfor %}
+<ul>
+{% endif %}
+  

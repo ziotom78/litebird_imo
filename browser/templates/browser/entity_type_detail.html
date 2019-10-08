@@ -1,0 +1,18 @@
+<h1>{{ entity_type.name }}</h1>
+
+<ul>
+  <li>Is a file required? <b>{{ entity_type.is_file_required }}</b></li>
+  <li>Is this part of the IMO? <b>{{ entity_type.imo_field }}</b></li>
+  <li>Number of the specification document: <b>{{ entity_type.spec_document }}</b></li>
+  <li>Media type: <b>{{ entity_type.media_type }}</b></li>
+</ul>
+
+{% if entities %}
+<p>List of entities:</p>
+<ul>
+  {% for cur_entity in entities %}
+  <li><a href="{% url 'entity_detail' cur_entity.uuid %}">{{ cur_entity.name }}</a></li>
+  {% endfor %}
+<ul>
+{% endif %}
+  
