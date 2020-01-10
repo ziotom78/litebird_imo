@@ -9,18 +9,23 @@ It is a Python 3 program written using Django.
 
 ## Installation
 
-Create a virtual environment and run the following command:
+The project use [poetry](https://python-poetry.org/) to manage all its
+dependencies. Once you have installed Poetry, run the following
+command to create a dedicated virtual environment and install all the
+dependencies:
 
-    pip install -r requirements.txt
+    cd litebird_imo
+    poetry install
     
 Then run the server:
 
-    python manage.py makemigrations
-    python manage.py migrate
-    python manage.py createsuperuser
-    python manage.py runserver
+    poetry run python3 manage.py makemigrations
+    poetry run python3 manage.py migrate
+    poetry run python3 manage.py createsuperuser
+    poetry run python3 manage.py runserver
     
-Start the server by opening the admin webpage: http://127.0.0.1:8000/admin
+Start the server by opening the admin webpage:
+http://127.0.0.1:8000/admin
     
 Then enter as the superuser, then populate the database according to
 the following order:
@@ -63,4 +68,3 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
